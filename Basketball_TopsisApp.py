@@ -7,6 +7,8 @@ Created on Fri Mar 17 08:21:04 2023
 
 import streamlit as st
 import pandas as pd
+
+!pip install openpyxl
 import openpyxl
 #import easygui as eg
 
