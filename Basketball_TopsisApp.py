@@ -7,9 +7,13 @@ Created on Fri Mar 17 08:21:04 2023
 
 import streamlit as st
 import pandas as pd
+import numpy as np
+from datetime import date
+import itertools
+import random
+import os
+import itertools
 
-
-import openpyxl
 #import easygui as eg
 
 
@@ -245,10 +249,7 @@ class team_combos(Topsis):
     def main_function(self, sport, wgt_inits, cols, bc, cc, num_overlap):
         
         
-        import numpy as np
-        import pandas as pd
-        import easygui as eg
-        from datetime import date
+
         
         data = self.data
         self.data["Name1"] = "("+self.data.Pos+") " +self.data.Name
@@ -328,11 +329,7 @@ class team_combos(Topsis):
         
     def generate(self, Rating, mins, maxs, tm_min, tm_max, n, Proj, num_overlap):
         
-        import easygui as eg
-        import numpy as np
-        import pandas as pd
-        import itertools
-        import random
+
       
         sel1 = self.data.Per.values
         selc = self.data.Sel.values
@@ -450,8 +447,7 @@ class team_combos(Topsis):
         
 
 
-import numpy as np
-import pandas as pd
+
 
 
 
@@ -480,7 +476,7 @@ if data_path is not None:
         # code1 = r"C:\Users\11482\OneDrive - Kantar\Desktop\LeAAP\Batch-2_DS\WhitePaper\Topsis.py"
         # code2 = r"C:\Users\11482\OneDrive - Kantar\Desktop\LeAAP\Batch-2_DS\WhitePaper\TC_generations.py"
         
-        import os
+
         # execfile(code1)
         # execfile(code2)
               
@@ -488,9 +484,7 @@ if data_path is not None:
         # exec(open(code2).read())
         
         
-        import itertools
-        import pandas as pd
-        import numpy as np
+
         #d2 = pd.read_clipboard()
         
         mg = team_combos(data)
