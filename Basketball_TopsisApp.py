@@ -490,12 +490,18 @@ if data_path is not None:
         mg = team_combos(data)
         ratss, combos = mg.main_function(sport, wgt_inits, cols, bc, cc, num_overlap)
         
-        ratings, combos1 = st.tabs(["Tab1","Tab2"])
+        ratings, combos1 = st.tabs(["Player Ratings","Team Combinations"])
         with ratings:
             st.dataframe(ratss.sort_values(by = "CRITIC"))
+            st.download_button("Download ratings", ratss)
+            if st.download_button:
+                st.write("Downloaded")
         
         with combos1:
-            st.dataframe(combos[wgt_inits[0]],use_container_width=st.session_state.use_container_width)    
+            st.dataframe(combos[wgt_inits[0]],use_container_width=st.session_state.use_container_width)
+            st.download_button("Download Team Combinations", combos[wgt_inits[0]])
+            if st.download_button:
+                st.write("Downloaded")
             
             
             
