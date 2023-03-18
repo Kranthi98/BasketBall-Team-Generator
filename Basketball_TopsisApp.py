@@ -493,15 +493,15 @@ if data_path is not None:
         ratings, combos1 = st.tabs(["Player Ratings","Team Combinations"])
         with ratings:
             st.dataframe(ratss.sort_values(by = "CRITIC"))
-            st.download_button("Download ratings", ratss)
-            if st.download_button:
-                st.write("Downloaded")
+            #st.download_button("Download ratings", ratss)
+            #if st.download_button:
+            #    st.write("Downloaded")
         
         with combos1:
             st.dataframe(combos[wgt_inits[0]],use_container_width=st.session_state.use_container_width)
-            st.download_button("Download Team Combinations", combos[wgt_inits[0]])
-            if st.download_button:
-                st.write("Downloaded")
+            #st.download_button("Download Team Combinations", combos[wgt_inits[0]])
+            #if st.download_button:
+            #    st.write("Downloaded")
             
             
             
