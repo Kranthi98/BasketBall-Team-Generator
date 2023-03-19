@@ -439,7 +439,7 @@ if data_path is not None:
         
         with combos1:
             st.dataframe(combos[display_results],use_container_width=st.session_state.use_container_width)
-            st.download_button("Download Team Combinations", combos[display_results].to_excel())
+            st.download_button("Download Team Combinations", combos[display_results].to_csv(), file_name = "Team_combos.csv")
 
             
             
