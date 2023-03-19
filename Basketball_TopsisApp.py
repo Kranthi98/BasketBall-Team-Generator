@@ -438,7 +438,7 @@ if data_path is not None:
 
         
         with combos1:
-            st.dataframe(combos[display_results])
+            st.dataframe(combos[display_results].T)
             st.download_button("Download Team Combinations", combos[display_results].to_csv(), file_name = "Team_combos.csv")
 
             
