@@ -438,8 +438,8 @@ if data_path is not None:
 
         
         with combos1:
-            st.dataframe(combos[display_results[0]],use_container_width=st.session_state.use_container_width)
-            st.download_button("Download Team Combinations", combos[wgt_inits[0]])
+            st.dataframe(combos[display_results],use_container_width=st.session_state.use_container_width)
+            st.download_button("Download Team Combinations", combos[display_results].to_excel()])
 
             
             
