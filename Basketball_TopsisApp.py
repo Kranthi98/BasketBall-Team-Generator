@@ -14,11 +14,6 @@ import random
 import os
 import itertools
 
-#import easygui as eg
-
-
-
-
 
 class Topsis():
     
@@ -253,18 +248,6 @@ class team_combos(Topsis):
         
         data = self.data
         self.data["Name1"] = "("+self.data.Pos+") " +self.data.Name
-        #data.sort_values(by = "Pos", inplace = True)
-
-        # folder = eg.diropenbox(msg = "Select the folder to store the output")
-        # path = folder+"\\"+"_".join(data.Team.unique())+"_"+str(date.today())+".xlsx"
-        # sport = eg.choicebox(msg = "Select the sport", choices = ["Basketball", "Football"])  
-        # wgt_inits = eg.multchoicebox(msg = "Pick the weight initiation types", choices=["SD","Entropy1","CRITIC","Combinative"])
-        # cols = eg.multchoicebox(msg = "Pick the criteria columns", choices = data.columns)
-        # bc = eg.multchoicebox(msg = "Pick the benefit criteria columns", choices = cols)
-        # cc = eg.multchoicebox(msg = "Pick the cost criteria columns.Select one from benefit", choices = cols)
-        # num_overlap = int(eg.enterbox(msg = "Enter the max common players in two different teams"))
-        # man_players1 = eg.multchoicebox(msg = "Pick the mandatory players in the team", choices = self.data.Name1.values)
-        
 
         if len(cc)-1+len(bc) == len(cols):
             bb = list("b"*len(bc))+list("c"*(len(cc)-1))
@@ -308,20 +291,12 @@ class team_combos(Topsis):
         
         tc = team_combos(df)
         df_rat = dict()
-        # writer = pd.ExcelWriter(path)
+
         for i in wgt_inits:
             dd,dd1 = tc.generate(i, mins, maxs, tm_min, tm_max, n, Proj, num_overlap)
-            # man_players = st.sidebar.multselect(label = "Pick the mandatory players in the team", options = dd.Name1.values)
-            #cols = ["Player"+str(i+1) for i in range(1,9)]
-            # dd.to_excel(writer, sheet_name = i, index = False)
-            # dd1.to_excel(writer, sheet_name = i+str(1), index = False)
+
             df_rat[i] = dd1
             
-        # df.to_excel(writer, sheet_name = "Player_Ratings", index = False)
-        # pd.DataFrame(weghts).to_excel(writer, sheet_name = "weights", index = False)
-        # writer.save()
-        # writer.close()
-        
         return df, df_rat
             
         
@@ -348,25 +323,10 @@ class team_combos(Topsis):
         
         permuts1 = [x for x in permuts if len(set(pos[list(x)])) >= self.data.Pos.nunique() and len(set(teams[list(x)])) >= self.data.Team.nunique()]
         final_pers = []
-        
-      #  print("Running 25 Times..")
-       # for _ in range(25):
-        #    permuts2 = random.sample(permuts1,1)
-         #   permuts1.remove(permuts2[0])
-          #  ratings2 = [np.sum(Rtgs[list(permuts1[0])])]
-            #Credits2 = [np.sum(Crs[list(permuts1[0])])]
-           # for j in permuts1:     
-            #    v = [1 if len(set(i).intersection(set(j))) <= num_overlap else 0 for i in permuts2]
-             #   if sum(v) == len(permuts2):
-              ##     ratings2.append(np.sum(Rtgs[list(j)]))
-                    #Credits2.append(np.sum(Crs[list(j)]))
-            
-            #final_pers.extend(permuts2)
+
         
         final_pers = list(set(final_pers))
-        #[x for x in permuts1[1:] if len(set(x).intersection(set(permuts1[0]))) < 6]
-        #permuts2.append(permuts1[0])
-        #pos_n = [set(pos[list(x)]) for x in permuts1]
+
 
         final_permuts = []
         Avg_team_ratings = []
@@ -408,10 +368,6 @@ class team_combos(Topsis):
         cols = ["Player"+str(i+1) for i in range(df2.shape[1])]
         df2.columns = cols
 
-        
-        # man_players_count = df2[cols].apply(lambda x : sum([1 for i in man_players if i in list(x)]), axis = 1)
-        # df2["man_players_count"] = man_players_count
-        
         df2["Credits_used"] = Credits_used
         df2["Total_Ratings"] = Total_ratings
         df2["Avg_team_ratings"] = Avg_team_ratings
@@ -422,10 +378,6 @@ class team_combos(Topsis):
         df2["Value"] = df2["Team_FP"]/df2["Credits_used"]
         df2["Ratings_Prop"] = df2["Total_Ratings"]/df2["Total_Ratings"].max()
         df2 = df2.sort_values(by = "Total_Ratings", ascending = False)
-       # df2 = df2.query(f"man_players_count >= {df2.man_players_count.max()-1}")
-        #df3 = np.array(df2[cols])
-        
-        # num_overlap = 2
 
         final_combos = [0]
         final_combos_players = []
@@ -466,42 +418,27 @@ if data_path is not None:
     bc = st.sidebar.multiselect(label = "Pick the benefit criteria columns", options = cols)
     cc = st.sidebar.multiselect(label = "Pick the cost criteria columns.Select one from benefit", options = cols)
     num_overlap = int(st.sidebar.select_slider(label = "Enter the max common players in two different teams",options = [1,2,3,4,5,6,7,8]))
+
     
 
 
-# man_players1 = eg.multchoicebox(msg = "Pick the mandatory players in the team", choices = self.data.Name1.values)
-
-
     if len(cols) > 0 and len(bc) > 0 and len(cc) > 0 and len(wgt_inits) > 0 and num_overlap > 1 :
-        # code1 = r"C:\Users\11482\OneDrive - Kantar\Desktop\LeAAP\Batch-2_DS\WhitePaper\Topsis.py"
-        # code2 = r"C:\Users\11482\OneDrive - Kantar\Desktop\LeAAP\Batch-2_DS\WhitePaper\TC_generations.py"
-        
 
-        # execfile(code1)
-        # execfile(code2)
-              
-        # exec(open(code1).read())
-        # exec(open(code2).read())
-        
-        
-
-        #d2 = pd.read_clipboard()
-        
         mg = team_combos(data)
         ratss, combos = mg.main_function(sport, wgt_inits, cols, bc, cc, num_overlap)
         
+        display_results = st.sidebar.selectbox(label = "Select to display the results", options = wgt_inits, )
+        
         ratings, combos1 = st.tabs(["Player Ratings","Team Combinations"])
         with ratings:
-            st.dataframe(ratss.sort_values(by = "CRITIC"))
-            #st.download_button("Download ratings", ratss)
-            #if st.download_button:
-            #    st.write("Downloaded")
+            st.dataframe(ratss.sort_values(by = "CRITIC"), ascending = False)
+            st.download_button("Download ratings", ratss)
+
         
         with combos1:
-            st.dataframe(combos[wgt_inits[0]],use_container_width=st.session_state.use_container_width)
-            #st.download_button("Download Team Combinations", combos[wgt_inits[0]])
-            #if st.download_button:
-            #    st.write("Downloaded")
+            st.dataframe(combos[display_results[0]],use_container_width=st.session_state.use_container_width)
+            st.download_button("Download Team Combinations", combos[wgt_inits[0]])
+
             
             
             
