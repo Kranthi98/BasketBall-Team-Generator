@@ -406,7 +406,7 @@ class team_combos(Topsis):
 
 st.title("Basketball Topsis Team Generator")
 st.checkbox("Use container width", value=True, key="use_container_width")
-
+st.set_page_config(page_title="Topsis Basketball Team Generator", page_icon=None, layout="wide", initial_sidebar_state="auto", menu_items=None)
 
 data_path = st.file_uploader("Select the file with D11 information")
 if data_path is not None:
