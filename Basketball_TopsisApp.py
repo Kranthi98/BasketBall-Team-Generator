@@ -433,7 +433,8 @@ if data_path is not None:
         with ratings:
             st.dataframe(ratss.sort_values(by = "CRITIC", ascending = False))
             st.download_button(label = "Download ratings", data = ratss,
-                              file_name = "Ratings.csv")
+                              file_name = "Ratings.csv",
+                              "text/csv")
 
         
         with combos1:
