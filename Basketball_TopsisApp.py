@@ -432,7 +432,8 @@ if data_path is not None:
         ratings, combos1 = st.tabs(["Player Ratings","Team Combinations"])
         with ratings:
             st.dataframe(ratss.sort_values(by = "CRITIC", ascending = False))
-            st.download_button("Download ratings", ratss)
+            st.download_button(label = "Download ratings", data = ratss,
+                              file_name = "Ratings.csv")
 
         
         with combos1:
