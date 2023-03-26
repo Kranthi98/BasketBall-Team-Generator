@@ -377,7 +377,8 @@ class team_combos(Topsis):
         df2["Team_FP"] = Team_FP
         df2["Value"] = df2["Team_FP"]/df2["Credits_used"]
         df2["Ratings_Prop"] = df2["Total_Ratings"]/df2["Total_Ratings"].max()
-        df2 = df2.sort_values(by = "Total_Ratings", ascending = False)
+        #df2 = df2.sort_values(by = "Total_Ratings", ascending = False)
+        df2 = df2.sort_values(by = "Team_FP", ascending = False)
 
         final_combos = [0]
         final_combos_players = []
